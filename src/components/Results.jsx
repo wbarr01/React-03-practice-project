@@ -1,6 +1,9 @@
-import { formatter } from "../util/investment";
+import { calculateInvestmentResults, formatter } from "../util/investment";
 
-export default function Results({ results }) {
+export default function Results({ inputData }) {
+
+    let results = calculateInvestmentResults(inputData);
+
     return (
         <table id='result'>
             <thead>

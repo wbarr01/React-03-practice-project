@@ -2,32 +2,30 @@ import { useState } from "react";
 
 import UserForm from "./components/UserForm";
 import Results from "./components/Results";
-import { calculateInvestmentResults } from "./util/investment";
-
-const INPUT_DATA = {
-  initialInvestment: null,
-  annualInvestment: null,
-  expectedReturn: null,
-  duration: null
-}
+import { } from "./util/investment";
 
 function App() {
-  const [inputData, SetInputData] = useState(INPUT_DATA);
 
-  function handleInputChange(label, value) {
-    SetInputData(prevInput => {
+  const [inputData, SetInputData] = useState({
+    initialInvestment: 1500,
+    annualInvestment: 900,
+    expectedReturn: 5.5,
+    duration: 2
+  });
+
+  function handleInputChange(identifier, value) {
+    SetInputData(prevUserInput => {
       return {
-        ...prevInput,
-        [label]: value
-      }
-    })
+        ...prevUserInput,
+        [identifier]: +value//transfor to number, Number(value)
+      };
+    });
   }
 
-  let results = calculateInvestmentResults(inputData);
   return (
     <main>
-      <UserForm onInputChange={handleInputChange} />
-      <Results results={results} />
+      <UserForm inputData={inputData} onInputChange={handleInputChange} />
+      <Results inputData={inputData} />
 
     </main>
   )
