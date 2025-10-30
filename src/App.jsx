@@ -24,7 +24,6 @@ function App() {
   }
 
   let results = calculateInvestmentResults(inputData);
-  console.log(results);
   return (
     <main>
       <UserForm onInputChange={handleInputChange} />
