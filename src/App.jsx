@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import UserForm from "./components/UserForm";
 import Results from "./components/Results";
-import { } from "./util/investment";
 
 function App() {
 
@@ -22,11 +21,16 @@ function App() {
     });
   }
 
+  const inputIsValid = inputData.duration >= 1;
+  let showResults = (<Results inputData={inputData} />);
+  if (!inputIsValid) {
+    showResults = <p className="center">Please enter a duration larger than 0</p>
+  }
+
   return (
     <main>
       <UserForm inputData={inputData} onInputChange={handleInputChange} />
-      <Results inputData={inputData} />
-
+      {showResults}
     </main>
   )
 
