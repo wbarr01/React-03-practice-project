@@ -1,28 +1,28 @@
 import { useState } from "react";
 
 export default function UserForm({ onInputChange }) {
-    const [initInvest, setInitInvest] = useState(0);
-    const [annualInvest, setAnnualInvest] = useState(0);
+    const [initialInvestment, setInitialInvestment] = useState(0);
+    const [annualInvestment, setAnnualInvestment] = useState(0);
     const [expectedReturn, setExpectedReturn] = useState(0);
     const [duration, setDuration] = useState(0);
 
     function handleChange(event) {
         switch (event.target.id) {
-            case 'initInvest':
-                setInitInvest(event.target.value);
+            case 'initialInvestment':
+                setInitialInvestment(Number(event.target.value));
+                console.log(typeof event.target.value);
                 break;
-            case 'annualInvest':
-                setAnnualInvest(event.target.value);
+            case 'annualInvestment':
+                setAnnualInvestment(Number(event.target.value));
                 break;
             case 'expectedReturn':
-                setExpectedReturn(event.target.value);
+                setExpectedReturn(Number(event.target.value));
                 break;
             case 'duration':
-                setDuration(event.target.value);
+                setDuration(Number(event.target.value));
                 break;
         }
-        console.log(event.target);
-        onInputChange(event.target.id, event.target.value);
+        onInputChange(event.target.id, Number(event.target.value));
     }
 
     return (
@@ -30,11 +30,11 @@ export default function UserForm({ onInputChange }) {
             <div className="input-group">
                 <div>
                     <label>INITIAL INVESTMENT</label>
-                    <input type="number" id='initInvest' value={initInvest} onChange={handleChange}></input>
+                    <input type="number" id='initialInvestment' value={initialInvestment} onChange={handleChange}></input>
                 </div>
                 <div>
                     <label>ANNUAL INVESTMENT</label>
-                    <input type="number" id='annualInvest' value={annualInvest} onChange={handleChange}></input>
+                    <input type="number" id='annualInvestment' value={annualInvestment} onChange={handleChange}></input>
                 </div>
             </div>
             <br></br>

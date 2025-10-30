@@ -2,10 +2,11 @@ import { useState } from "react";
 
 import UserForm from "./components/UserForm";
 import Results from "./components/Results";
+import { calculateInvestmentResults } from "./util/investment";
 
 const INPUT_DATA = {
-  initInvest: null,
-  annualInvest: null,
+  initialInvestment: null,
+  annualInvestment: null,
   expectedReturn: null,
   duration: null
 }
@@ -22,10 +23,13 @@ function App() {
     })
   }
 
+  let results = calculateInvestmentResults(inputData);
+  console.log(results);
   return (
     <main>
       <UserForm onInputChange={handleInputChange} />
-      DATA {inputData.initInvest} {inputData.duration}
+      <Results results={results} />
+
     </main>
   )
 
