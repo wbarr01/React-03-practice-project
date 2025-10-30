@@ -7,22 +7,26 @@ export default function UserForm({ onInputChange }) {
     const [duration, setDuration] = useState(0);
 
     function handleChange(event) {
+
+        let value = Number(event.target.value);
+        if (value < -1) {
+            console.log('Negative number not allowed')
+        }
         switch (event.target.id) {
             case 'initialInvestment':
-                setInitialInvestment(Number(event.target.value));
-                console.log(typeof event.target.value);
+                setInitialInvestment(value);
                 break;
             case 'annualInvestment':
-                setAnnualInvestment(Number(event.target.value));
+                setAnnualInvestment(value);
                 break;
             case 'expectedReturn':
-                setExpectedReturn(Number(event.target.value));
+                setExpectedReturn(value);
                 break;
             case 'duration':
-                setDuration(Number(event.target.value));
+                setDuration(value);
                 break;
         }
-        onInputChange(event.target.id, Number(event.target.value));
+        onInputChange(event.target.id, value);
     }
 
     return (
